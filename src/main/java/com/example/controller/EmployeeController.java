@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -34,6 +35,18 @@ public class EmployeeController {
     public ResponseEntity<?> findEmployeeById(@PathVariable("id") long id){
             return new ResponseEntity<>(employeeService.findEmployeeById(id),HttpStatus.OK);
     }
+
+    @PostMapping("/employees")
+    public ResponseEntity<?> saveEmployee(@Valid @RequestBody EmployeeDTO employeeDTO) throws MethodArgumentNotValidException{
+
+            EmployeeDTO empDTO = employeeService.addNewEmployee(employeeDTO);
+            return new ResponseEntity<>(empDTO,HttpStatus.CREATED);
+
+    }
+
+
+
+
 
 
 

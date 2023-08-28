@@ -13,7 +13,7 @@ public interface EmployeeService {
 
     Optional<Employee> findEmployeeById(long id);
 
-    Employee addNewEmployee(Employee employee);
+    EmployeeDTO addNewEmployee(EmployeeDTO employeeDTO);
 
     void deleteEmployee(@Param("id") Long id);
 

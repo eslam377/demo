@@ -7,7 +7,9 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "employees",uniqueConstraints = {
+        @UniqueConstraint(columnNames = "phone_number")
+})
 @Data @NoArgsConstructor
 public class Employee {
 
