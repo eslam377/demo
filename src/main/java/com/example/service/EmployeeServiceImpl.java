@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Optional<Employee> findEmployeeById(long id) {
         Optional<Employee> employee = employeeRepository.findById(id);
-        if (employee.isPresent()) {
+        if (employee.ispresent()) {
             return employee;
         }else {
             throw new EmployeeNotFoundException("Employee with id " + id + " not found");
