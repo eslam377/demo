@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findAllEmployees();
 
-    Optional<Employee> findEmployeeById(long id);
+    Employee findEmployeeById(long id);
 
     EmployeeDTO addNewEmployee(EmployeeDTO employeeDTO);
 
