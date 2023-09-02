@@ -14,7 +14,7 @@ public class EmployeeDTO {
     private Long id ;
     private String firstName ;
     private String lastName ;
-    private String email ;
+    private String emailAddress ;
     private double salary ;
     private String phoneNumber ;
     private LocalDate hireDate ;

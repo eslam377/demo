@@ -4,7 +4,8 @@ import com.example.dto.EmployeeDTO;
 import com.example.entity.Employee;
 
 import com.example.exception.EmployeeNotFoundException;
-import com.example.mapper.CustomModelMapper;
+
+import com.example.mapper.EmployeeMapper;
 import com.example.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,36 +19,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository ;
 
+    private  final EmployeeMapper employeeMapper ;
+
     @Override
     public List<EmployeeDTO> findAllEmployees() {
-
         List<Employee> employees = employeeRepository.findAll();
-
-        List<EmployeeDTO> employeeDTOs =
-                CustomModelMapper.mapAll(employees,EmployeeDTO.class);
-
-        return employeeDTOs;
+        List<EmployeeDTO> employeeDTOS = employeeMapper.EmployeesToEmployeeDTOs(employees);
+        return employeeDTOS;
     }
 
     @Override
-    public Optional<Employee> findEmployeeById(long id) {
-        Optional<Employee> employee = employeeRepository.findById(id);
-        if (employee.isPresent()) {
-            return employee;
-        }else {
+    public EmployeeDTO findEmployeeById(long id) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        EmployeeDTO employeeDTO = employeeMapper.EmployeeToEmployeeDTO(employee);
+        if (employee == null) {
             throw new EmployeeNotFoundException("Employee with id " + id + " not found");
+        }else {
+            return employeeDTO;
         }
     }
 
-    @Override
-    public Employee addNewEmployee(Employee employee) {
-        return employeeRepository.save(employee);
-    }
 
-    @Override
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
-    }
 
 
 }

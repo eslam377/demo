@@ -11,11 +11,7 @@ public interface EmployeeService {
 
     List<EmployeeDTO> findAllEmployees();
 
-    Optional<Employee> findEmployeeById(long id);
-
-    Employee addNewEmployee(Employee employee);
-
-    void deleteEmployee(@Param("id") Long id);
+    EmployeeDTO findEmployeeById(long id);
 
 
 }

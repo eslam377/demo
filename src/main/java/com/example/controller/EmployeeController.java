@@ -2,8 +2,10 @@ package com.example.controller;
 
 import com.example.dto.EmployeeDTO;
 import com.example.service.EmployeeService;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +36,6 @@ public class EmployeeController {
     public ResponseEntity<?> findEmployeeById(@PathVariable("id") long id){
             return new ResponseEntity<>(employeeService.findEmployeeById(id),HttpStatus.OK);
     }
-
-
 
 
 }
